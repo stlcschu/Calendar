@@ -201,7 +201,7 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
     Column() {
         val weekStartDay = DayOfWeek.MONDAY.dayOfMonth()
         val localDateNow = LocalDate.now()
-        val currentDate = if(localDateNow.dayOfMonth < weekStartDay && localDateNow.month.value == 1) LocalDate.of(localDateNow.year - 1, 12, weekStartDay)
+        var currentDate = if(localDateNow.dayOfMonth < weekStartDay && localDateNow.month.value == 1) LocalDate.of(localDateNow.year - 1, 12, weekStartDay)
         else if (localDateNow.dayOfMonth < weekStartDay) LocalDate.of(localDateNow.year, localDateNow.month.value - 1, weekStartDay)
         else LocalDate.of(localDateNow.year, localDateNow.month.value, weekStartDay)
         val isCurrentDay = Modifier.background(Color.LightGray)
@@ -214,7 +214,7 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
                 Text(text = "Mo")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
                 else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
@@ -222,7 +222,7 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
                 Text(text = "Di")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
                 else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
@@ -230,7 +230,7 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
                 Text(text = "Mi")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
                 else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
@@ -238,7 +238,7 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
                 Text(text = "Do")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
                 else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
@@ -246,7 +246,7 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
                 Text(text = "Fr")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
                 else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
@@ -254,7 +254,7 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
                 Text(text = "Sa")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
                 else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
@@ -262,7 +262,7 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
                 Text(text = "So")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
         }
         Row() {
             Column(
@@ -271,42 +271,42 @@ fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
                 Text(text = "Mo")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
             ) {
                 Text(text = "Di")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
             ) {
                 Text(text = "Mi")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
             ) {
                 Text(text = "Do")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
             ) {
                 Text(text = "Fr")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
             ) {
                 Text(text = "Sa")
                 Text(text = "${currentDate.dayOfMonth}")
             }
-            currentDate.plusDays(1)
+            currentDate = currentDate.plusDays(1)
             Column(
                 modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
             ) {
