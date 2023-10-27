@@ -43,7 +43,7 @@ fun EventsToday(events: List<Event>, width: Float) {
             Text(text = "Keine Termine heute")
             return
         }
-        LazyColumn() {
+        LazyColumn {
             items(events) {
                 event -> EventTodayRow(event = event)
             }
@@ -64,7 +64,7 @@ fun EventTodayRow(event: Event) {
             .width(10.dp)
             .fillMaxHeight()
             .background(color = event.specialEvent.eventColor))
-        Column() {
+        Column {
             Text(text = event.eventTitle, fontSize = 2.5.em)
 
             val eventLengthText = if(event.eventLength == EventTaskLength.ALL_DAY) "Ganztaegig"
@@ -83,9 +83,7 @@ fun TasksToday(tasks: List<Task>, width: Float) {
             Text(text = "Keine Tasks heute")
             return
         }
-        LazyColumn(
-//            modifier = Modifier.width(intrinsicSize = IntrinsicSize.Max)
-        ) {
+        LazyColumn {
             items(tasks) {
                     task -> TaskTodayRow(task = task)
             }
@@ -107,7 +105,7 @@ fun TaskTodayRow(task: Task) {
             .fillMaxHeight()
             .background(color = if (task.isCompleted) Color.Green else Color.Red)
         )
-        Column() {
+        Column {
             Text(text = task.taskTitle, fontSize = 2.5.em)
 
             val taskLengthText = if(task.taskLength == EventTaskLength.ALL_DAY) "Ganztaegig"
@@ -124,9 +122,7 @@ fun UpcomingEvents(events: List<Event>) {
             Text(text = "Keine Termine heute")
             return
         }
-        LazyColumn(
-//            modifier = Modifier.width(intrinsicSize = IntrinsicSize.Max)
-        ) {
+        LazyColumn {
             items(events) {
                     event -> UpcomingEventRow(event = event)
             }
@@ -198,123 +194,50 @@ fun UpcomingEventRow(event: Event) {
 
 @Composable
 fun TwoWeeksPreview(events: List<Event>, tasks: List<Task>) {
-    Column() {
+    Column {
         val weekStartDay = DayOfWeek.MONDAY.dayOfMonth()
         val localDateNow = LocalDate.now()
         var currentDate = if(localDateNow.dayOfMonth < weekStartDay && localDateNow.month.value == 1) LocalDate.of(localDateNow.year - 1, 12, weekStartDay)
         else if (localDateNow.dayOfMonth < weekStartDay) LocalDate.of(localDateNow.year, localDateNow.month.value - 1, weekStartDay)
         else LocalDate.of(localDateNow.year, localDateNow.month.value, weekStartDay)
-        val isCurrentDay = Modifier.background(Color.LightGray)
-        val isNotCurrentMonth = Modifier.background(Color.Gray)
-        Row() {
-            Column(
-                modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
-                else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Mo")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+        Row {
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
-                else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Di")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
-                else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Mi")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
-                else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Do")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
-                else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Fr")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
-                else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Sa")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.dayOfMonth == localDateNow.dayOfMonth) isCurrentDay
-                else if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "So")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
         }
-        Row() {
-            Column(
-                modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Mo")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+        Row {
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Di")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Mi")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Do")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Fr")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "Sa")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
             currentDate = currentDate.plusDays(1)
-            Column(
-                modifier = if(currentDate.month != localDateNow.month) isNotCurrentMonth else Modifier
-            ) {
-                Text(text = "So")
-                Text(text = "${currentDate.dayOfMonth}")
-            }
+            CalendarField(events = events, fieldDate = currentDate, backgroundColor = getBackgroundColor(currentDate))
         }
     }
+}
+
+private fun getBackgroundColor(currentDate: LocalDate) : Color {
+    val localDateNow = LocalDate.now()
+    return if(currentDate.dayOfMonth == localDateNow.dayOfMonth) Color.LightGray
+    else if(currentDate.month != localDateNow.month) Color.Gray else Color.White
 }
 
 @Preview

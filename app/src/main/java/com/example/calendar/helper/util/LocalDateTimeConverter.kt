@@ -14,7 +14,7 @@ class LocalDateTimeConverter {
         return "${dateTime.dayOfMonth}. (${shortenWeekDayName(dateTime.dayOfWeek)}) ${convertMonthEnumStringToConventional(dateTime.month.toString())}"
     }
 
-    private fun shortenWeekDayName(weekDay: DayOfWeek) : String {
+    fun shortenWeekDayName(weekDay: DayOfWeek) : String {
         return when(weekDay) {
             DayOfWeek.MONDAY -> "Mo"
             DayOfWeek.TUESDAY -> "Di"

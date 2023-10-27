@@ -20,4 +20,5 @@ data class Event(
     val notification: Pair<Int, EventNotification>? = null,
     val description: String,
     val specialEvent: SpecialEvent = SpecialEvent.NONE,
+    val rowIndex: Int = 0
 )
